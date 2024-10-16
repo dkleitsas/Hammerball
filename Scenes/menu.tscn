@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcik8jsvdeep4"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_bo58j"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bo58j")
+
+[node name="StoryMode" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 124.0
+offset_bottom = 47.0
+text = "Story Mode
+"
+
+[node name="TwoPlayer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 52.0
+offset_right = 124.0
+offset_bottom = 83.0
+text = "Two Player"
+
+[node name="HowToPlay" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 88.0
+offset_right = 124.0
+offset_bottom = 116.0
+text = "How To Play
+"
+
+[connection signal="pressed" from="TwoPlayer" to="." method="_on_two_player_pressed"]
