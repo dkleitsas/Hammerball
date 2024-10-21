@@ -153,9 +153,10 @@ script = ExtResource("1_8tu0w")
 
 [node name="Ball" parent="." groups=["Balls"] instance=ExtResource("2_r2lg3")]
 position = Vector2(640, 320)
+linear_damp = 0.2
 
 [node name="PlayerLeft" type="RigidBody2D" parent="."]
-position = Vector2(184, 680)
+position = Vector2(182, 616)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -196,7 +197,7 @@ region_rect = Rect2(262, 442, 117, 80)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerLeft"]
 z_index = 1
 position = Vector2(0, -35)
-scale = Vector2(0.31, 0.31)
+scale = Vector2(0.34, 0.34)
 sprite_frames = SubResource("SpriteFrames_lh1tn")
 frame = 2
 frame_progress = 0.826551
@@ -215,7 +216,7 @@ position = Vector2(0.0967207, 38.2752)
 shape = SubResource("RectangleShape2D_tl6co")
 
 [node name="PlayerRight" type="RigidBody2D" parent="."]
-position = Vector2(1184, 672)
+position = Vector2(1181, 635)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -258,8 +259,10 @@ region_rect = Rect2(34, 443, 117, 80)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerRight"]
 z_index = 1
 position = Vector2(0, -35)
-scale = Vector2(0.31, 0.31)
+scale = Vector2(0.34, 0.34)
 sprite_frames = SubResource("SpriteFrames_gci60")
+frame = 3
+frame_progress = 0.743055
 flip_h = true
 
 [node name="Bat" type="CharacterBody2D" parent="PlayerRight"]
@@ -302,7 +305,7 @@ position = Vector2(671, 0)
 shape = SubResource("RectangleShape2D_rbq0k")
 
 [node name="Floor" type="StaticBody2D" parent="Bounds"]
-position = Vector2(600, 744)
+position = Vector2(600, 690)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor"]
@@ -336,6 +339,7 @@ rotation = -0.120428
 shape = SubResource("RectangleShape2D_hiaq1")
 
 [node name="Sprite2D" type="Sprite2D" parent="GoalLeft/Bar"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-2.42277, -83.1657)
 rotation = 1.52367
@@ -365,6 +369,7 @@ rotation = -0.120428
 shape = SubResource("RectangleShape2D_hiaq1")
 
 [node name="Sprite2D" type="Sprite2D" parent="GoalRight/Bar"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(-2.48671, -0.972131)
 rotation = 1.52367

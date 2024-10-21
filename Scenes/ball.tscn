@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://jvr74kpe6ekr"]
+[gd_scene load_steps=5 format=3 uid="uid://jvr74kpe6ekr"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_sy8a0"]
+[ext_resource type="Texture2D" path="res://Art/ball2.png" id="2_aqsj1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mw2iq"]
 friction = 0.05
@@ -21,3 +22,7 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8v1al")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_aqsj1")

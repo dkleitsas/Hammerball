@@ -15,7 +15,7 @@ func _process(delta):
 	if randf() > 0.9988:
 		var power_up_instance = power_ups.instantiate()
 		add_child(power_up_instance)
-		power_up_instance.position = Vector2(randi_range(200, 1150), randi_range(200, 650)) 
+		power_up_instance.position = Vector2(randi_range(200, 1150), randi_range(200, 400)) 
 		power_up_instance.type = PowerUpType.values().pick_random() 
 
 func _on_goal_left_body_entered(body):
