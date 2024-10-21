@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpptglsktg2cy"]
+[gd_scene load_steps=36 format=3 uid="uid://bpptglsktg2cy"]
 
 [ext_resource type="Script" path="res://Scripts/hammerball.gd" id="1_8tu0w"]
 [ext_resource type="PackedScene" uid="uid://jvr74kpe6ekr" path="res://Scenes/ball.tscn" id="2_r2lg3"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cbmt75tcfd8ds" path="res://Art/puppiz.png" id="5_7xbuw"]
 [ext_resource type="Script" path="res://Scripts/player_right.gd" id="5_73osy"]
 [ext_resource type="Texture2D" uid="uid://ui8pw5h5clgg" path="res://icon.svg" id="6_pv57n"]
+[ext_resource type="FontFile" uid="uid://dniqbckc54f7t" path="res://Art/fonts/digital-7.ttf" id="6_ugham"]
 [ext_resource type="Texture2D" uid="uid://bckr28tcijg81" path="res://Art/foot.png" id="7_dfu3f"]
+[ext_resource type="Script" path="res://Scenes/GameTimer.gd" id="9_47fpj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ligc5"]
 friction = 0.2
@@ -146,7 +148,7 @@ size = Vector2(1362, 20)
 size = Vector2(51, 264)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hiaq1"]
-size = Vector2(72, 20)
+size = Vector2(147.559, 20)
 
 [node name="Hammerball" type="Node2D"]
 script = ExtResource("1_8tu0w")
@@ -309,9 +311,12 @@ metadata/_edit_group_ = true
 shape = SubResource("WorldBoundaryShape2D_4ar1h")
 
 [node name="Scoreboard" type="Label" parent="."]
-offset_top = 72.0
-offset_right = 1368.0
-offset_bottom = 208.0
+modulate = Color(0.905721, 0.269104, 0.327508, 1)
+offset_left = -24.0
+offset_top = 91.0
+offset_right = 1344.0
+offset_bottom = 227.0
+theme_override_fonts/font = ExtResource("6_ugham")
 theme_override_font_sizes/font_size = 100
 text = "0 - 0"
 horizontal_alignment = 1
@@ -319,7 +324,8 @@ horizontal_alignment = 1
 [node name="GoalLeft" type="Node2D" parent="."]
 
 [node name="GoalArea" type="Area2D" parent="GoalLeft"]
-position = Vector2(40, 568)
+position = Vector2(64, 551)
+rotation = 0.00751454
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -331,8 +337,9 @@ shape = SubResource("RectangleShape2D_qeepl")
 position = Vector2(48, 544)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalLeft/Bar"]
-position = Vector2(-3.93606, -82.1936)
-rotation = -0.120428
+position = Vector2(22.1531, -93.6729)
+rotation = 2.72708
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hiaq1")
 
 [node name="Sprite2D" type="Sprite2D" parent="GoalLeft/Bar"]
@@ -348,7 +355,7 @@ scale = Vector2(-1, 1)
 metadata/_edit_group_ = true
 
 [node name="GoalArea" type="Area2D" parent="GoalRight"]
-position = Vector2(46, 649)
+position = Vector2(54, 639)
 collision_mask = 3
 metadata/_edit_group_ = true
 
@@ -360,8 +367,8 @@ shape = SubResource("RectangleShape2D_qeepl")
 position = Vector2(48, 544)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalRight/Bar"]
-position = Vector2(-4, 0)
-rotation = -0.120428
+position = Vector2(5.20947, -1.11447)
+rotation = 2.59442
 shape = SubResource("RectangleShape2D_hiaq1")
 
 [node name="Sprite2D" type="Sprite2D" parent="GoalRight/Bar"]
@@ -376,6 +383,20 @@ z_index = -6
 position = Vector2(684, 382)
 scale = Vector2(0.717593, 0.717593)
 texture = ExtResource("7_dfu3f")
+
+[node name="Labeltimer" type="Label" parent="."]
+modulate = Color(1, 0.345639, 0.288257, 1)
+offset_left = 646.0
+offset_top = 210.0
+offset_right = 686.0
+offset_bottom = 233.0
+theme_override_fonts/font = ExtResource("6_ugham")
+theme_override_font_sizes/font_size = 27
+text = "
+"
+
+[node name="Timer" type="Timer" parent="Labeltimer"]
+script = ExtResource("9_47fpj")
 
 [connection signal="body_entered" from="GoalLeft/GoalArea" to="." method="_on_goal_left_body_entered"]
 [connection signal="body_entered" from="GoalRight/GoalArea" to="." method="_on_goal_right_body_entered"]
