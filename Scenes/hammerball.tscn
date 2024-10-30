@@ -153,11 +153,11 @@ size = Vector2(72, 20)
 script = ExtResource("1_8tu0w")
 
 [node name="Ball" parent="." groups=["Balls"] instance=ExtResource("2_r2lg3")]
-position = Vector2(640, 320)
+position = Vector2(672, 297)
 linear_damp = 0.2
 
 [node name="PlayerLeft" type="RigidBody2D" parent="."]
-position = Vector2(182, 616)
+position = Vector2(487, 671)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -217,7 +217,7 @@ position = Vector2(0.0967207, 38.2752)
 shape = SubResource("RectangleShape2D_tl6co")
 
 [node name="PlayerRight" type="RigidBody2D" parent="."]
-position = Vector2(1181, 635)
+position = Vector2(832, 666)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -314,20 +314,20 @@ shape = SubResource("WorldBoundaryShape2D_4ar1h")
 
 [node name="timer" type="Label" parent="."]
 modulate = Color(1, 0.211765, 0.0745098, 1)
-offset_left = 606.0
-offset_top = 234.0
-offset_right = 766.0
-offset_bottom = 289.0
+offset_left = 605.0
+offset_top = 171.0
+offset_right = 765.0
+offset_bottom = 226.0
 theme_override_fonts/font = ExtResource("6_fpisv")
 theme_override_font_sizes/font_size = 30
 text = "00:00"
 
 [node name="Scoreboard" type="Label" parent="."]
 modulate = Color(0.92549, 0.133333, 0.0470588, 1)
-offset_left = -18.0
-offset_top = 112.0
-offset_right = 1350.0
-offset_bottom = 249.0
+offset_left = -17.0
+offset_top = 51.0
+offset_right = 1351.0
+offset_bottom = 188.0
 theme_override_fonts/font = ExtResource("6_fpisv")
 theme_override_font_sizes/font_size = 90
 text = "0-0"
