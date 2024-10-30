@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://jvr74kpe6ekr"]
 
 [ext_resource type="Script" path="res://Scripts/ball.gd" id="1_sy8a0"]
-[ext_resource type="Texture2D" path="res://Art/ball2.png" id="2_aqsj1"]
+[ext_resource type="Texture2D" uid="uid://m88kbtjmpm5o" path="res://Art/ball2.png" id="2_aqsj1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mw2iq"]
 friction = 0.05

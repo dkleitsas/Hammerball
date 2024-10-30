@@ -8,7 +8,7 @@ var power_ups = preload("res://Scenes/power_up.tscn")
 @onready var label = $Scoreboard
 
 func _ready():
-	label.text = str(Global.score_left) + " - " + str(Global.score_right)
+	label.text = str(Global.score_left) + "-" + str(Global.score_right)
 
 	
 func _process(delta):
@@ -21,14 +21,14 @@ func _process(delta):
 func _on_goal_left_body_entered(body):
 	if body.is_in_group("Balls"):
 		Global.score_right += 1
-		label.text = str(Global.score_left) + " - " + str(Global.score_right)
+		label.text = str(Global.score_left) + "-" + str(Global.score_right)
 		call_deferred("reset")
 
 
 func _on_goal_right_body_entered(body):
 	if body.is_in_group("Balls"):
 		Global.score_left += 1
-		label.text = str(Global.score_left) + " - " + str(Global.score_right)
+		label.text = str(Global.score_left) + "-" + str(Global.score_right)
 		call_deferred("reset")
 		
 

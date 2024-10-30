@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpptglsktg2cy"]
+[gd_scene load_steps=35 format=3 uid="uid://bpptglsktg2cy"]
 
 [ext_resource type="Script" path="res://Scripts/hammerball.gd" id="1_8tu0w"]
 [ext_resource type="PackedScene" uid="uid://jvr74kpe6ekr" path="res://Scenes/ball.tscn" id="2_r2lg3"]
 [ext_resource type="Script" path="res://Scripts/player_left.gd" id="3_dipui"]
 [ext_resource type="Texture2D" uid="uid://cbmt75tcfd8ds" path="res://Art/puppiz.png" id="5_7xbuw"]
 [ext_resource type="Script" path="res://Scripts/player_right.gd" id="5_73osy"]
+[ext_resource type="FontFile" uid="uid://u0oyl7gp3r8c" path="res://Art/e1234/E1234.ttf" id="6_fpisv"]
 [ext_resource type="Texture2D" uid="uid://ui8pw5h5clgg" path="res://icon.svg" id="6_pv57n"]
 [ext_resource type="Texture2D" uid="uid://bckr28tcijg81" path="res://Art/foot.png" id="7_dfu3f"]
 
@@ -14,8 +15,8 @@ bounce = 0.18
 absorbent = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8pb5e"]
-radius = 24.0
-height = 72.0
+radius = 27.0
+height = 88.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_15s0g"]
 atlas = ExtResource("5_7xbuw")
@@ -73,8 +74,8 @@ size = Vector2(6, 58)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tl6co"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0n8tx"]
-radius = 24.0
-height = 76.0
+radius = 27.0
+height = 88.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hlut7"]
 atlas = ExtResource("5_7xbuw")
@@ -167,7 +168,7 @@ script = ExtResource("3_dipui")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerLeft"]
-position = Vector2(0, -20)
+position = Vector2(0, -30)
 shape = SubResource("CapsuleShape2D_8pb5e")
 
 [node name="GroundRay" type="RayCast2D" parent="PlayerLeft"]
@@ -203,7 +204,7 @@ frame = 2
 frame_progress = 0.826551
 
 [node name="Bat" type="CharacterBody2D" parent="PlayerLeft"]
-position = Vector2(7, -20)
+position = Vector2(24, -32)
 collision_layer = 8
 collision_mask = 8
 
@@ -227,7 +228,7 @@ script = ExtResource("5_73osy")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRight"]
-position = Vector2(0, -20)
+position = Vector2(0, -30)
 shape = SubResource("CapsuleShape2D_0n8tx")
 
 [node name="GroundRay" type="RayCast2D" parent="PlayerRight"]
@@ -311,12 +312,25 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Floor"]
 shape = SubResource("WorldBoundaryShape2D_4ar1h")
 
+[node name="timer" type="Label" parent="."]
+modulate = Color(1, 0.211765, 0.0745098, 1)
+offset_left = 606.0
+offset_top = 234.0
+offset_right = 766.0
+offset_bottom = 289.0
+theme_override_fonts/font = ExtResource("6_fpisv")
+theme_override_font_sizes/font_size = 30
+text = "00:00"
+
 [node name="Scoreboard" type="Label" parent="."]
-offset_top = 72.0
-offset_right = 1368.0
-offset_bottom = 208.0
-theme_override_font_sizes/font_size = 100
-text = "0 - 0"
+modulate = Color(0.92549, 0.133333, 0.0470588, 1)
+offset_left = -18.0
+offset_top = 112.0
+offset_right = 1350.0
+offset_bottom = 249.0
+theme_override_fonts/font = ExtResource("6_fpisv")
+theme_override_font_sizes/font_size = 90
+text = "0-0"
 horizontal_alignment = 1
 
 [node name="GoalLeft" type="Node2D" parent="."]
