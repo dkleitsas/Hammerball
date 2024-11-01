@@ -1,12 +1,11 @@
- 
-Version 0.2 of the game. Most of the technical issues have been solved but it still requires some polish (and for someone to not be lazy and finish the sprites).
+Most of the technical issues have been solved but it still requires some polish (and for someone to not be lazy and fix the bugs).
 
 
-1st version:
+old version:
 ![image](https://github.com/user-attachments/assets/02385b57-7093-497c-91a9-460f42663933)
 
 2nd cuter:
-![image](https://github.com/user-attachments/assets/fcefc990-07c8-4a3f-a8fe-d82502c70adc)
+![image](https://github.com/user-attachments/assets/36699793-7ec2-4591-b86b-13d30876bcc8)
 
 
 
