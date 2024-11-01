@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Scripts/player_left.gd" id="3_dipui"]
 [ext_resource type="Texture2D" uid="uid://cbmt75tcfd8ds" path="res://Art/puppiz.png" id="5_7xbuw"]
 [ext_resource type="Script" path="res://Scripts/player_right.gd" id="5_73osy"]
-[ext_resource type="FontFile" uid="uid://u0oyl7gp3r8c" path="res://Art/e1234/E1234.ttf" id="6_fpisv"]
 [ext_resource type="Texture2D" uid="uid://ui8pw5h5clgg" path="res://icon.svg" id="6_pv57n"]
+[ext_resource type="FontFile" uid="uid://b2kpvm32qks3t" path="res://Art/CursedTimerUlil-Aznm.ttf" id="6_y6m3s"]
 [ext_resource type="Texture2D" uid="uid://bckr28tcijg81" path="res://Art/foot.png" id="7_dfu3f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ligc5"]
@@ -153,11 +153,12 @@ size = Vector2(72, 20)
 script = ExtResource("1_8tu0w")
 
 [node name="Ball" parent="." groups=["Balls"] instance=ExtResource("2_r2lg3")]
+z_index = 1
 position = Vector2(672, 297)
 linear_damp = 0.2
 
 [node name="PlayerLeft" type="RigidBody2D" parent="."]
-position = Vector2(487, 671)
+position = Vector2(476, 675)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -204,7 +205,7 @@ frame = 2
 frame_progress = 0.826551
 
 [node name="Bat" type="CharacterBody2D" parent="PlayerLeft"]
-position = Vector2(24, -32)
+position = Vector2(27, -22)
 collision_layer = 8
 collision_mask = 8
 
@@ -217,7 +218,7 @@ position = Vector2(0.0967207, 38.2752)
 shape = SubResource("RectangleShape2D_tl6co")
 
 [node name="PlayerRight" type="RigidBody2D" parent="."]
-position = Vector2(832, 666)
+position = Vector2(896, 675)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -282,6 +283,7 @@ shape = SubResource("RectangleShape2D_tl6co")
 [node name="Bounds" type="Node2D" parent="."]
 
 [node name="WallLeft" type="StaticBody2D" parent="Bounds"]
+position = Vector2(-11, 0)
 physics_material_override = SubResource("PhysicsMaterial_5el6f")
 metadata/_edit_group_ = true
 
@@ -290,7 +292,7 @@ position = Vector2(-1, 383)
 shape = SubResource("RectangleShape2D_ghsd5")
 
 [node name="WallRight" type="StaticBody2D" parent="Bounds"]
-position = Vector2(1352, 64)
+position = Vector2(1380, 64)
 physics_material_override = SubResource("PhysicsMaterial_7jjfh")
 metadata/_edit_group_ = true
 
@@ -299,11 +301,20 @@ position = Vector2(0, 319)
 shape = SubResource("RectangleShape2D_ghsd5")
 
 [node name="Ceiling" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, 3)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Ceiling"]
 position = Vector2(671, 0)
 shape = SubResource("RectangleShape2D_rbq0k")
+
+[node name="up up" type="CollisionPolygon2D" parent="Bounds/Ceiling"]
+position = Vector2(1171, 11)
+polygon = PackedVector2Array(0, 0, 40, 10, 80, 30, 150, 80, 200, 140, 200, 0)
+
+[node name="up up2" type="CollisionPolygon2D" parent="Bounds/Ceiling"]
+position = Vector2(195, 9)
+polygon = PackedVector2Array(20, 0, -40, 15, -80, 30, -150, 80, -200, 140, -200, 0)
 
 [node name="Floor" type="StaticBody2D" parent="Bounds"]
 position = Vector2(600, 690)
@@ -314,26 +325,26 @@ shape = SubResource("WorldBoundaryShape2D_4ar1h")
 
 [node name="timer" type="Label" parent="."]
 modulate = Color(1, 0.211765, 0.0745098, 1)
-offset_left = 605.0
-offset_top = 171.0
-offset_right = 765.0
-offset_bottom = 226.0
-theme_override_fonts/font = ExtResource("6_fpisv")
-theme_override_font_sizes/font_size = 30
+offset_left = 627.0
+offset_top = 175.0
+offset_right = 787.0
+offset_bottom = 230.0
+theme_override_fonts/font = ExtResource("6_y6m3s")
+theme_override_font_sizes/font_size = 36
 text = "00:00"
 
 [node name="Scoreboard" type="Label" parent="."]
 modulate = Color(0.92549, 0.133333, 0.0470588, 1)
-offset_left = -17.0
-offset_top = 51.0
-offset_right = 1351.0
-offset_bottom = 188.0
-theme_override_fonts/font = ExtResource("6_fpisv")
+offset_top = 53.0
+offset_right = 1368.0
+offset_bottom = 190.0
+theme_override_fonts/font = ExtResource("6_y6m3s")
 theme_override_font_sizes/font_size = 90
-text = "0-0"
+text = "0 - 0"
 horizontal_alignment = 1
 
 [node name="GoalLeft" type="Node2D" parent="."]
+position = Vector2(0, -25)
 
 [node name="GoalArea" type="Area2D" parent="GoalLeft"]
 position = Vector2(40, 568)
@@ -361,7 +372,7 @@ scale = Vector2(0.173423, 0.579618)
 texture = ExtResource("6_pv57n")
 
 [node name="GoalRight" type="Node2D" parent="."]
-position = Vector2(1352, -80)
+position = Vector2(1352, -105)
 scale = Vector2(-1, 1)
 metadata/_edit_group_ = true
 
@@ -391,7 +402,7 @@ scale = Vector2(0.173423, 0.579618)
 texture = ExtResource("6_pv57n")
 
 [node name="Foot" type="Sprite2D" parent="."]
-z_index = -6
+z_index = -7
 position = Vector2(684, 382)
 scale = Vector2(0.717593, 0.717593)
 texture = ExtResource("7_dfu3f")
