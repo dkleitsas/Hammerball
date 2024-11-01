@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bpptglsktg2cy"]
+[gd_scene load_steps=44 format=3 uid="uid://bpptglsktg2cy"]
 
 [ext_resource type="Script" path="res://Scripts/hammerball.gd" id="1_8tu0w"]
 [ext_resource type="PackedScene" uid="uid://jvr74kpe6ekr" path="res://Scenes/ball.tscn" id="2_r2lg3"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://fh3ffc0d65pp" path="res://Art/sounds/goal.mp3" id="10_u1eq4"]
 [ext_resource type="AudioStream" uid="uid://da6jc8yqgdj2r" path="res://Art/sounds/kick1.wav" id="11_qls3b"]
 [ext_resource type="AudioStream" uid="uid://bsw88dipt0wll" path="res://Art/sounds/whiste_end.wav" id="12_bskrm"]
+[ext_resource type="AudioStream" uid="uid://cko4gw80idlwa" path="res://Art/sounds/powerup.wav" id="16_ht6w6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ligc5"]
 friction = 0.2
@@ -466,6 +467,9 @@ volume_db = -20.0
 [node name="whistle_end" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("12_bskrm")
 volume_db = 10.0
+
+[node name="powerup_collected" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("16_ht6w6")
 
 [connection signal="body_entered" from="GoalLeft/GoalArea" to="." method="_on_goal_left_body_entered"]
 [connection signal="body_exited" from="GoalLeft/GoalArea" to="." method="_on_goal_area_body_exited"]

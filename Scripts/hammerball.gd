@@ -9,7 +9,7 @@ var collisions_disabled = false
 @onready var goal_sound = $Sounds/goal_sound
 @onready var whistle_end = $Sounds/whistle_end
 
-enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY, FLOATING_GOALS, SPEED, JUMP_BOOST }
+enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY, FLOATING_GOALS, SPEED, JUMP_BOOST, INCREASE_TIME, REDUCE_TIME }
 var power_ups = preload("res://Scenes/power_up.tscn")
 @onready var label = $Scoreboard
 
@@ -24,11 +24,12 @@ func _process(delta):
 	else:
 		game_timer.text = "00:00"
 		hard_reset()
-	if randf() > 0.9988 and get_tree().get_nodes_in_group("Powerups").size() < 3:
+	if randf() > 0.998 and get_tree().get_nodes_in_group("Powerups").size() < 3:
 		var power_up_instance = power_ups.instantiate()
+		power_up_instance.type = PowerUpType.values().pick_random() 
 		add_child(power_up_instance)
 		power_up_instance.position = Vector2(randi_range(200, 1150), randi_range(200, 400)) 
-		power_up_instance.type = PowerUpType.values().pick_random() 
+		
 
 func _on_goal_left_body_entered(body):
 	if body.is_in_group("Balls"):
