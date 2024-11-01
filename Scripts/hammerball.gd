@@ -1,4 +1,5 @@
 extends Node2D
+@onready var timer = $Timer
 
 enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY,
  FLOATING_GOALS, SPEED, JUMP_BOOST }
@@ -31,6 +32,14 @@ func _on_goal_right_body_entered(body):
 		label.text = str(Global.score_left) + " - " + str(Global.score_right)
 		call_deferred("reset")
 		
+		
 
+		
 func reset():
-	get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
+	if timer.time_left <= 0:  # if timer is not running
+		timer.wait_time = 2
+		timer.one_shot = true  
+		add_child(timer)      
+		timer.start()
+		await timer.timeout  
+		get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
