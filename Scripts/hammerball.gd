@@ -1,7 +1,6 @@
 extends Node2D
 @onready var timer = $Goal2SecondTimer
 @onready var game_timer = $GameTimer
-var game_time: float = 91.0
 
 enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY,
  FLOATING_GOALS, SPEED, JUMP_BOOST }
@@ -12,11 +11,11 @@ var power_ups = preload("res://Scenes/power_up.tscn")
 
 func _ready():
 	label.text = str(Global.score_left) + " - " + str(Global.score_right)
-	game_timer.text = "01:30"
+	game_timer.text = "%02d:%02d" % [int(Global.game_time) / 60, int(Global.game_time) % 60]
 	
 func _process(delta):
-	game_time -= delta
-	game_timer.text = "%02d:%02d" % [int(game_time) / 60, int(game_time) % 60]
+	Global.game_time -= delta
+	game_timer.text = "%02d:%02d" % [int(Global.game_time) / 60, int(Global.game_time) % 60]
 	if randf() > 0.9988 and get_tree().get_nodes_in_group("Powerups").size() < 4:
 		var power_up_instance = power_ups.instantiate()
 		add_child(power_up_instance)
