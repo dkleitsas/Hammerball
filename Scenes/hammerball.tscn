@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bpptglsktg2cy"]
+[gd_scene load_steps=47 format=3 uid="uid://bpptglsktg2cy"]
 
 [ext_resource type="Script" path="res://Scripts/hammerball.gd" id="1_8tu0w"]
 [ext_resource type="PackedScene" uid="uid://jvr74kpe6ekr" path="res://Scenes/ball.tscn" id="2_r2lg3"]
@@ -12,10 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://bckr28tcijg81" path="res://Art/foot.png" id="7_dfu3f"]
 [ext_resource type="Texture2D" uid="uid://dtq6ntbf35a5s" path="res://Art/bone.png" id="8_mnuda"]
 [ext_resource type="Texture2D" uid="uid://ufuxb33or17d" path="res://Art/front goal poles.png" id="9_uw05k"]
-[ext_resource type="AudioStream" uid="uid://fh3ffc0d65pp" path="res://Art/sounds/goal.mp3" id="10_u1eq4"]
 [ext_resource type="AudioStream" uid="uid://da6jc8yqgdj2r" path="res://Art/sounds/kick1.wav" id="11_qls3b"]
 [ext_resource type="AudioStream" uid="uid://bsw88dipt0wll" path="res://Art/sounds/whiste_end.wav" id="12_bskrm"]
+[ext_resource type="AudioStream" uid="uid://cu4rxknqk67l8" path="res://Art/sounds/goal.wav" id="13_qglyp"]
 [ext_resource type="AudioStream" uid="uid://cko4gw80idlwa" path="res://Art/sounds/powerup.wav" id="16_ht6w6"]
+[ext_resource type="AudioStream" uid="uid://bud2oekcpd54j" path="res://Art/sounds/cheer.wav" id="17_erf78"]
+[ext_resource type="AudioStream" uid="uid://wcejsxuclijg" path="res://Art/sounds/short_cheer.wav" id="18_sgmiw"]
+[ext_resource type="AudioStream" uid="uid://cswb02bohhuj0" path="res://Art/sounds/ambience.wav" id="19_hvcuf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ligc5"]
 friction = 0.2
@@ -457,12 +460,12 @@ texture = ExtResource("9_uw05k")
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="goal_sound" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("10_u1eq4")
-volume_db = -15.0
+stream = ExtResource("13_qglyp")
+volume_db = 5.0
 
 [node name="kick_sound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("11_qls3b")
-volume_db = -20.0
+volume_db = -5.0
 
 [node name="whistle_end" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("12_bskrm")
@@ -470,6 +473,17 @@ volume_db = 10.0
 
 [node name="powerup_collected" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("16_ht6w6")
+
+[node name="cheer_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("17_erf78")
+
+[node name="short_cheer_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("18_sgmiw")
+
+[node name="ambience" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("19_hvcuf")
+volume_db = -5.28
+autoplay = true
 
 [connection signal="body_entered" from="GoalLeft/GoalArea" to="." method="_on_goal_left_body_entered"]
 [connection signal="body_exited" from="GoalLeft/GoalArea" to="." method="_on_goal_area_body_exited"]

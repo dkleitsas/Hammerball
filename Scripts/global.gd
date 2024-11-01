@@ -3,6 +3,7 @@ extends Node
 var score_left = 0
 var score_right = 0
 var game_time: float = 91.0
+var ambience_sound_pos = 0
 
 
 func _ready():
