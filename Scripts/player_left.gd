@@ -1,10 +1,16 @@
 extends RigidBody2D
 
 
-# Movement speed
+
 var speed = 300.0
-# Jump impulse strength
-var jump_impulse = 1000.0
+
+
+
+# JUMP PARAMETERS !! please tweak them TwT... the right player has the old system.
+var jump_impulse = 300
+var hold_jump_force = 5500
+var max_jump_hold_time = 0.15
+var jump_hold_timer = 0.0
 
 @onready var ground_ray = $GroundRay
 @onready var left_ray = $LeftRay
@@ -32,6 +38,14 @@ func _integrate_forces(state):
 	
 	if Input.is_action_just_pressed("jump_l") and on_ground:
 		apply_impulse(Vector2(0, -jump_impulse))
+		jump_hold_timer = max_jump_hold_time
+		
+	if Input.is_action_pressed("jump_l") and jump_hold_timer > 0:
+		apply_impulse(Vector2(0, -hold_jump_force * state.step))
+		jump_hold_timer -= state.step
+		
+	if Input.is_action_just_released("jump_l"):
+		jump_hold_timer = 0
 		
 		
 	if Input.is_action_pressed("kick_l") and bat.rotation_degrees > -90:

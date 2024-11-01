@@ -21,7 +21,7 @@ func _on_foot_right_body_entered(body):
 	last_touched = "R"
 	
 func slow():
-	linear_velocity *= 0.4
+	linear_velocity *= 0.3
 
 
 func _on_goal_area_body_exited(body): 
