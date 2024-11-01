@@ -2,6 +2,11 @@ extends Node2D
 @onready var timer = $Goal2SecondTimer
 @onready var game_timer = $GameTimer
 
+@onready var collision_shape_rightgoal = $GoalRight/GoalArea/CollisionShape2D
+@onready var collision_shape_leftgoal = $GoalLeft/GoalArea/CollisionShape2D
+var reset_done = false
+
+
 enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY,
  FLOATING_GOALS, SPEED, JUMP_BOOST }
 
@@ -15,7 +20,11 @@ func _ready():
 	
 func _process(delta):
 	Global.game_time -= delta
-	game_timer.text = "%02d:%02d" % [int(Global.game_time) / 60, int(Global.game_time) % 60]
+	if Global.game_time > 0:
+		game_timer.text = "%02d:%02d" % [int(Global.game_time) / 60, int(Global.game_time) % 60]
+	else:
+		game_timer.text = "00:00"
+		hard_reset()
 	if randf() > 0.9988 and get_tree().get_nodes_in_group("Powerups").size() < 4:
 		var power_up_instance = power_ups.instantiate()
 		add_child(power_up_instance)
@@ -35,20 +44,32 @@ func _on_goal_right_body_entered(body):
 		label.text = str(Global.score_left) + " - " + str(Global.score_right)
 		call_deferred("reset")
 		
-		
+func _on_goal_area_body_exited(body): 
+	if body.is_in_group("Balls"):
+		body.slow()  
+		collision_shape_rightgoal.queue_free()
+		collision_shape_leftgoal.queue_free()
 
 		
 func reset():
-	if timer.time_left <= 0:  # if timer is not running
-		timer.wait_time = 2
-		timer.one_shot = true  
-		add_child(timer)      
+	if Global.game_time > 2:
+		timer.wait_time = 2   # 2 seconds after entered goal area
 		timer.start()
 		await timer.timeout  
 		get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
 
 
 func hard_reset():
-	Global.score_right = 0 
-	Global.score_left = 0 
-	get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
+	if reset_done == false:
+		reset_done = true
+		collision_shape_rightgoal.queue_free()
+		collision_shape_leftgoal.queue_free()
+	if Global.game_time <= -5:  # 5 seconds after timer reached 00:00
+		Global.score_right = 0 
+		Global.score_left = 0 
+		Global.game_time = 91.0
+		
+		get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
+
+
+

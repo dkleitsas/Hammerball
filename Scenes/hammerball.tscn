@@ -433,6 +433,6 @@ scale = Vector2(0.718, 0.718)
 texture = ExtResource("9_uw05k")
 
 [connection signal="body_entered" from="GoalLeft/GoalArea" to="." method="_on_goal_left_body_entered"]
-[connection signal="body_exited" from="GoalLeft/GoalArea" to="Ball" method="_on_goal_area_body_exited"]
+[connection signal="body_exited" from="GoalLeft/GoalArea" to="." method="_on_goal_area_body_exited"]
 [connection signal="body_entered" from="GoalRight/GoalArea" to="." method="_on_goal_right_body_entered"]
-[connection signal="body_exited" from="GoalRight/GoalArea" to="Ball" method="_on_goal_area_body_exited"]
+[connection signal="body_exited" from="GoalRight/GoalArea" to="." method="_on_goal_area_body_exited"]
