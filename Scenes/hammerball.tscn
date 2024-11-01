@@ -1,13 +1,16 @@
-[gd_scene load_steps=40 format=3 uid="uid://bpptglsktg2cy"]
+[gd_scene load_steps=43 format=3 uid="uid://bpptglsktg2cy"]
 
 [ext_resource type="Script" path="res://Scripts/hammerball.gd" id="1_8tu0w"]
 [ext_resource type="PackedScene" uid="uid://jvr74kpe6ekr" path="res://Scenes/ball.tscn" id="2_r2lg3"]
 [ext_resource type="Script" path="res://Scripts/player_left.gd" id="3_dipui"]
+[ext_resource type="Texture2D" uid="uid://sxg717mjggqf" path="res://Art/ball shadow.png" id="3_xpp1u"]
+[ext_resource type="Script" path="res://Scenes/shadow_position.gd" id="4_j684j"]
 [ext_resource type="Texture2D" uid="uid://cbmt75tcfd8ds" path="res://Art/puppiz.png" id="5_7xbuw"]
 [ext_resource type="Script" path="res://Scripts/player_right.gd" id="5_73osy"]
 [ext_resource type="Texture2D" uid="uid://ui8pw5h5clgg" path="res://icon.svg" id="6_pv57n"]
 [ext_resource type="FontFile" uid="uid://b2kpvm32qks3t" path="res://Art/CursedTimerUlil-Aznm.ttf" id="6_y6m3s"]
 [ext_resource type="Texture2D" uid="uid://bckr28tcijg81" path="res://Art/foot.png" id="7_dfu3f"]
+[ext_resource type="Texture2D" uid="uid://dtq6ntbf35a5s" path="res://Art/bone.png" id="8_mnuda"]
 [ext_resource type="Texture2D" uid="uid://ufuxb33or17d" path="res://Art/front goal poles.png" id="9_uw05k"]
 [ext_resource type="AudioStream" uid="uid://fh3ffc0d65pp" path="res://Art/sounds/goal.mp3" id="10_u1eq4"]
 [ext_resource type="AudioStream" uid="uid://da6jc8yqgdj2r" path="res://Art/sounds/kick1.wav" id="11_qls3b"]
@@ -170,6 +173,11 @@ func _process(delta):
 [node name="Hammerball" type="Node2D"]
 script = ExtResource("1_8tu0w")
 
+[node name="BallShadow" type="Sprite2D" parent="."]
+position = Vector2(672, 654)
+texture = ExtResource("3_xpp1u")
+script = ExtResource("4_j684j")
+
 [node name="Ball" parent="." groups=["Balls"] instance=ExtResource("2_r2lg3")]
 z_index = 1
 position = Vector2(672, 297)
@@ -216,11 +224,16 @@ region_rect = Rect2(262, 442, 117, 80)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerLeft"]
 z_index = 1
-position = Vector2(0, -35)
+position = Vector2(-6, -35)
 scale = Vector2(0.34, 0.34)
 sprite_frames = SubResource("SpriteFrames_lh1tn")
 frame = 2
 frame_progress = 0.826551
+
+[node name="Bone" type="Sprite2D" parent="PlayerLeft"]
+position = Vector2(35, -3)
+rotation = -0.449153
+texture = ExtResource("8_mnuda")
 
 [node name="Bat" type="CharacterBody2D" parent="PlayerLeft"]
 position = Vector2(27, -22)
@@ -282,8 +295,13 @@ position = Vector2(0, -35)
 scale = Vector2(0.34, 0.34)
 sprite_frames = SubResource("SpriteFrames_gci60")
 frame = 3
-frame_progress = 0.743055
+frame_progress = 0.354006
 flip_h = true
+
+[node name="Bone" type="Sprite2D" parent="PlayerRight"]
+position = Vector2(-33, -2)
+rotation = -1.07277
+texture = ExtResource("8_mnuda")
 
 [node name="Bat" type="CharacterBody2D" parent="PlayerRight"]
 position = Vector2(-27, -20)

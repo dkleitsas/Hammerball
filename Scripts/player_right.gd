@@ -9,6 +9,7 @@ var jump_impulse = 1000.0
 @onready var left_ray = $LeftRay
 @onready var right_ray = $RightRay
 @onready var bat = $Bat
+@onready var bone = $Bone
 
 
 func _ready():
@@ -37,5 +38,13 @@ func _integrate_forces(state):
 	
 	if Input.is_action_pressed("kick_r") and bat.rotation_degrees < 90:
 		bat.rotation += 0.2
+		bone.rotation +=0.3
+		bone.position.y -=1.5
+		bone.position.x -=1.5
 	elif !Input.is_action_pressed("kick_r") and bat.rotation_degrees > 0:
 		bat.rotation -= 0.1
+		bone.rotation -=0.15
+		bone.position.y +=0.75
+		bone.position.x +=0.75
+		
+

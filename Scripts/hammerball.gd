@@ -24,7 +24,7 @@ func _process(delta):
 	else:
 		game_timer.text = "00:00"
 		hard_reset()
-	if randf() > 0.9988 and get_tree().get_nodes_in_group("Powerups").size() < 4:
+	if randf() > 0.9988 and get_tree().get_nodes_in_group("Powerups").size() < 3:
 		var power_up_instance = power_ups.instantiate()
 		add_child(power_up_instance)
 		power_up_instance.position = Vector2(randi_range(200, 1150), randi_range(200, 400)) 
