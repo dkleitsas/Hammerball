@@ -1,17 +1,16 @@
 extends Node2D
+
 @onready var timer = $Goal2SecondTimer
 @onready var game_timer = $GameTimer
-
 @onready var collision_shape_rightgoal = $GoalRight/GoalArea/CollisionShape2D
 @onready var collision_shape_leftgoal = $GoalLeft/GoalArea/CollisionShape2D
-var reset_done = false
+var collisions_disabled = false
 
+@onready var goal_sound = $Sounds/goal_sound
+@onready var whistle_end = $Sounds/whistle_end
 
-enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY,
- FLOATING_GOALS, SPEED, JUMP_BOOST }
-
+enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY, FLOATING_GOALS, SPEED, JUMP_BOOST }
 var power_ups = preload("res://Scenes/power_up.tscn")
-
 @onready var label = $Scoreboard
 
 func _ready():
@@ -33,43 +32,43 @@ func _process(delta):
 
 func _on_goal_left_body_entered(body):
 	if body.is_in_group("Balls"):
+		goal_sound.play()
 		Global.score_right += 1
 		label.text = str(Global.score_left) + " - " + str(Global.score_right)
 		call_deferred("reset")
 
-
 func _on_goal_right_body_entered(body):
 	if body.is_in_group("Balls"):
+		goal_sound.play()
 		Global.score_left += 1
 		label.text = str(Global.score_left) + " - " + str(Global.score_right)
 		call_deferred("reset")
 		
-func _on_goal_area_body_exited(body): 
+func _on_goal_area_body_exited(body):
 	if body.is_in_group("Balls"):
-		body.slow()  
-		collision_shape_rightgoal.queue_free()
-		collision_shape_leftgoal.queue_free()
+		body.slow()
+		disable_collisions()
 
-		
+func disable_collisions():
+	if not collisions_disabled:
+		if collision_shape_rightgoal and collision_shape_leftgoal:
+			collision_shape_rightgoal.queue_free()
+			collision_shape_leftgoal.queue_free()
+		collisions_disabled = true
+
 func reset():
-	if Global.game_time > 2:
-		timer.wait_time = 2   # 2 seconds after entered goal area
+	if Global.game_time > 4:
+		timer.wait_time = 2  # 2 seconds after entering goal area
 		timer.start()
-		await timer.timeout  
+		await timer.timeout
 		get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
 
-
 func hard_reset():
-	if reset_done == false:
-		reset_done = true
-		collision_shape_rightgoal.queue_free()
-		collision_shape_leftgoal.queue_free()
-	if Global.game_time <= -5:  # 5 seconds after timer reached 00:00
+	if not collisions_disabled:
+		whistle_end.play()
+		disable_collisions()
+	if Global.game_time <= -3:  # end scene 3 seconds after timer reached 00:00
 		Global.score_right = 0 
 		Global.score_left = 0 
 		Global.game_time = 91.0
-		
 		get_tree().change_scene_to_file("res://Scenes/hammerball.tscn")
-
-
-

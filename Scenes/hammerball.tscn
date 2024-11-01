@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bpptglsktg2cy"]
+[gd_scene load_steps=40 format=3 uid="uid://bpptglsktg2cy"]
 
 [ext_resource type="Script" path="res://Scripts/hammerball.gd" id="1_8tu0w"]
 [ext_resource type="PackedScene" uid="uid://jvr74kpe6ekr" path="res://Scenes/ball.tscn" id="2_r2lg3"]
@@ -9,6 +9,9 @@
 [ext_resource type="FontFile" uid="uid://b2kpvm32qks3t" path="res://Art/CursedTimerUlil-Aznm.ttf" id="6_y6m3s"]
 [ext_resource type="Texture2D" uid="uid://bckr28tcijg81" path="res://Art/foot.png" id="7_dfu3f"]
 [ext_resource type="Texture2D" uid="uid://ufuxb33or17d" path="res://Art/front goal poles.png" id="9_uw05k"]
+[ext_resource type="AudioStream" uid="uid://fh3ffc0d65pp" path="res://Art/sounds/goal.mp3" id="10_u1eq4"]
+[ext_resource type="AudioStream" uid="uid://da6jc8yqgdj2r" path="res://Art/sounds/kick1.wav" id="11_qls3b"]
+[ext_resource type="AudioStream" uid="uid://bsw88dipt0wll" path="res://Art/sounds/whiste_end.wav" id="12_bskrm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ligc5"]
 friction = 0.2
@@ -173,7 +176,7 @@ position = Vector2(672, 297)
 linear_damp = 0.2
 
 [node name="PlayerLeft" type="RigidBody2D" parent="."]
-position = Vector2(476, 675)
+position = Vector2(477, 675)
 collision_layer = 4
 collision_mask = 5
 mass = 1.92
@@ -431,6 +434,20 @@ z_index = 8
 position = Vector2(684, 382)
 scale = Vector2(0.718, 0.718)
 texture = ExtResource("9_uw05k")
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="goal_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_u1eq4")
+volume_db = -15.0
+
+[node name="kick_sound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_qls3b")
+volume_db = -20.0
+
+[node name="whistle_end" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("12_bskrm")
+volume_db = 10.0
 
 [connection signal="body_entered" from="GoalLeft/GoalArea" to="." method="_on_goal_left_body_entered"]
 [connection signal="body_exited" from="GoalLeft/GoalArea" to="." method="_on_goal_area_body_exited"]
