@@ -11,7 +11,7 @@ const BALL = preload("res://Scenes/ball.tscn")
 const POWER_UP_DURATION = 10
 
 enum PowerUpType { BIG_BALL, DOUBLE_BALL, CRAZY_BALL, SQUARE_BALL, LOW_GRAVITY,
- FLOATING_GOALS, SPEED, JUMP_BOOST, INCREACE_TIME, REDUCE_TIME }
+ SPEED, JUMP_BOOST, INCREACE_TIME, REDUCE_TIME }
 
 var type: PowerUpType
 var player
@@ -32,8 +32,6 @@ func _ready():
 			animated_sprite_2d.play("square")
 		PowerUpType.LOW_GRAVITY:
 			animated_sprite_2d.play("low")
-		PowerUpType.FLOATING_GOALS:
-			animated_sprite_2d.play("floating")
 		PowerUpType.SPEED:
 			animated_sprite_2d.play("speed")
 		PowerUpType.JUMP_BOOST:
@@ -43,6 +41,8 @@ func _ready():
 		PowerUpType.REDUCE_TIME:
 			animated_sprite_2d.play("reduce")
 			
+	
+	
 func power_up_collected(body):
 	powerup_sound.play()
 	ball = body
@@ -76,6 +76,7 @@ func power_up_collected(body):
 				var animated_sprite = b.get_node("AnimatedSprite2D")
 				if animated_sprite:
 					animated_sprite.play("crazy")
+					animated_sprite.scale = Vector2(0.4, 0.4)
 		PowerUpType.SQUARE_BALL:
 			for b in get_tree().get_nodes_in_group("Balls"):
 				var rect = RectangleShape2D.new()
@@ -88,8 +89,6 @@ func power_up_collected(body):
 			for b in get_tree().get_nodes_in_group("Balls"):
 				b.gravity_scale = 0.3
 				b.mass = 0.5
-		PowerUpType.FLOATING_GOALS:
-			pass
 		PowerUpType.SPEED:
 			player.speed = 500.0
 		PowerUpType.JUMP_BOOST:
@@ -138,8 +137,6 @@ func _on_power_up_timeout():
 			for b in get_tree().get_nodes_in_group("Balls"):
 				b.gravity_scale = 1
 				b.mass = 0.33
-		PowerUpType.FLOATING_GOALS:
-			pass
 		PowerUpType.SPEED:
 			player.speed = 300.0
 		PowerUpType.JUMP_BOOST:
